@@ -5,6 +5,9 @@
 [![CI/CD](https://github.com/VenkataAnilKumar/GenerativeAIProjects/workflows/CI%2FCD%20Pipeline/badge.svg)](https://github.com/VenkataAnilKumar/GenerativeAIProjects/actions)
 [![Python 3.11+](https://img.shields.io/badge/python-3.11+-blue.svg)](https://www.python.org/downloads/)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+[![Security](https://img.shields.io/badge/security-patched-green.svg)](SECURITY.md)
+
+> **🔒 Security Update (v0.1.1)**: All critical vulnerabilities patched. See [CHANGELOG](CHANGELOG.md) for details.
 
 ## 🚀 Features
 
