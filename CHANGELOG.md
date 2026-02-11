@@ -5,6 +5,20 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [0.1.1] - 2024-01-15
+
+### Security
+- **CRITICAL**: Updated fastapi from 0.109.0 to 0.109.1 to fix ReDoS vulnerability (CVE-2024-XXXX)
+- **CRITICAL**: Updated langchain-community from 0.0.19 to 0.3.27 to fix:
+  - XML External Entity (XXE) attack vulnerability
+  - SSRF vulnerability in RequestsToolkit component
+  - Pickle deserialization vulnerability
+- **CRITICAL**: Updated python-multipart from 0.0.6 to 0.0.22 to fix:
+  - Arbitrary file write vulnerability
+  - Denial of Service (DoS) vulnerability
+  - Content-Type Header ReDoS vulnerability
+- **HIGH**: Updated qdrant-client from 1.7.0 to 1.9.0 to fix input validation failure
+
 ## [0.1.0] - 2024-01-15
 
 ### Added
