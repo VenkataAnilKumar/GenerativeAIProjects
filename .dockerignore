@@ -1,0 +1,43 @@
+# Docker ignore patterns
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+env/
+venv/
+ENV/
+.venv
+
+# Tests
+.pytest_cache/
+htmlcov/
+.coverage
+.tox/
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Project specific
+.env
+*.log
+output_*.png
+output_*.jpg
+metrics.db
+
+# Documentation
+README.md
+ARCHITECTURE.md
+*.md
+!requirements.txt
+
+# Git
+.git/
+.gitignore

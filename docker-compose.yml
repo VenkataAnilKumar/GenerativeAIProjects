@@ -1,0 +1,97 @@
+version: '3.8'
+
+services:
+  # ─── Use Case 01: Marketing Content (Azure) ───────────────
+  marketing-content:
+    build:
+      context: ./use-cases/01-marketing-content-azure
+      dockerfile: Dockerfile
+    container_name: genai-marketing
+    environment:
+      - RUN_MODE=${RUN_MODE:-demo}
+      - AZURE_OPENAI_ENDPOINT=${AZURE_OPENAI_ENDPOINT}
+      - AZURE_OPENAI_KEY=${AZURE_OPENAI_KEY}
+      - OPENAI_API_KEY=${OPENAI_API_KEY}
+    volumes:
+      - ./scripts:/app/scripts:ro
+    ports:
+      - "8001:8000"
+    command: python main.py --type email
+
+  # ─── Use Case 02: Product Image (AWS) ─────────────────────
+  product-image:
+    build:
+      context: ./use-cases/02-product-image-aws
+      dockerfile: Dockerfile
+    container_name: genai-product-image
+    environment:
+      - RUN_MODE=${RUN_MODE:-demo}
+      - AWS_REGION=${AWS_REGION}
+      - AWS_ACCESS_KEY_ID=${AWS_ACCESS_KEY_ID}
+      - AWS_SECRET_ACCESS_KEY=${AWS_SECRET_ACCESS_KEY}
+    volumes:
+      - ./scripts:/app/scripts:ro
+      - ./output:/app/output
+    ports:
+      - "8002:8000"
+
+  # ─── Use Case 03: Code Completion (GCP) ───────────────────
+  code-completion:
+    build:
+      context: ./use-cases/03-code-completion-gcp
+      dockerfile: Dockerfile
+    container_name: genai-code-completion
+    environment:
+      - RUN_MODE=${RUN_MODE:-demo}
+      - GCP_PROJECT_ID=${GCP_PROJECT_ID}
+      - OPENAI_API_KEY=${OPENAI_API_KEY}
+    volumes:
+      - ./scripts:/app/scripts:ro
+    ports:
+      - "8003:8000"
+
+  # ─── Use Case 04: Customer Support RAG (AWS) ──────────────
+  customer-support:
+    build:
+      context: ./use-cases/04-customer-support-aws
+      dockerfile: Dockerfile
+    container_name: genai-customer-support
+    environment:
+      - RUN_MODE=${RUN_MODE:-demo}
+      - OPENAI_API_KEY=${OPENAI_API_KEY}
+    volumes:
+      - ./scripts:/app/scripts:ro
+    ports:
+      - "8004:8000"
+
+  # ─── Use Case 08: Code Review (AWS) ───────────────────────
+  code-review:
+    build:
+      context: ./use-cases/08-automated-code-review-aws
+      dockerfile: Dockerfile
+    container_name: genai-code-review
+    environment:
+      - RUN_MODE=${RUN_MODE:-demo}
+      - OPENAI_API_KEY=${OPENAI_API_KEY}
+    volumes:
+      - ./scripts:/app/scripts:ro
+    ports:
+      - "8008:8000"
+
+  # ─── Supporting Services ──────────────────────────────────
+  redis:
+    image: redis:7-alpine
+    container_name: genai-redis
+    ports:
+      - "6379:6379"
+    volumes:
+      - redis-data:/data
+    command: redis-server --appendonly yes
+
+volumes:
+  redis-data:
+    driver: local
+
+networks:
+  default:
+    name: genai-network
