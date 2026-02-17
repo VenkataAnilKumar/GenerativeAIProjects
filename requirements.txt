@@ -9,7 +9,7 @@ python-dotenv==1.0.0
 # Cloud SDKs
 boto3==1.34.0              # AWS
 azure-ai-ml==1.12.0        # Azure ML
-azure-ai-openai==0.1.0     # Azure OpenAI
+azure-ai-openai>=1.0.0     # Azure OpenAI
 google-cloud-aiplatform==1.38.0  # GCP Vertex AI
 openai==1.6.1              # OpenAI (fallback)
 
